@@ -1,0 +1,45 @@
+<table id="example2" class="table table-bordered table-hover">
+    <thead>
+    <tr>
+      <th>No.</th>
+      <th>Nama</th>
+      <th>Phone</th>
+      <th>email</th>
+      <th>Status</th>
+      <th>Aksi</th>
+    </tr>
+    </thead>
+    <tbody>
+      <% for(let i = 0; i < player.length; i++) { %>
+        <tr>
+          <td><%= i + 1 %></td>
+          <td><%= player[i].name %></td>
+          <td><%= player[i].phoneNumber %></td>
+          <td><%= player[i].email %></td>
+          <td>
+            <% if(player[i].status === 'Y') { %>
+                <span class="badge badge-success">
+                    Aktif
+                </span>
+            <% } else { %>
+                <span class="badge badge-danger">
+                    Non Aktif
+                </span>
+            <% } %>
+      </td>
+          <td>
+            <form action="/player/status/<%= player[i]._id %>?_method=PUT" method="POST" style="display:inline-block">
+                <button class="btn btn-primary btn-sm">
+                    <i class="fas fa-power-off"></i>
+                    <% if(player[i].status === 'Y') { %>
+                            Matikan
+                    <% } else { %>
+                            Hidupkan
+                    <% } %>
+                  </button>
+            </form>
+          </td>
+        </tr>
+      <% } %> 
+    </tbody>
+  </table>
